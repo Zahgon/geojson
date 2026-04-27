@@ -26,8 +26,7 @@ class Feature(GeoJSON):
         self["properties"] = properties or {}
 
     def errors(self):
-        geo = self.get('geometry')
-        return geo.errors() if geo else None
+        pass
 
 
 class FeatureCollection(GeoJSON):
@@ -47,7 +46,7 @@ class FeatureCollection(GeoJSON):
         self["features"] = features
 
     def errors(self):
-        return self.check_list_errors(lambda x: x.errors(), self.features)
+        pass
 
     def __getitem__(self, key):
         try:

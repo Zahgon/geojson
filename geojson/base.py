@@ -91,49 +91,18 @@ class GeoJSON(dict):
         :raises AttributeError: If the input dict contains items that are not
         valid GeoJSON types.
         """
-        if ob is None and default is not None:
-            instance = default()
-        elif isinstance(ob, GeoJSON):
-            instance = ob
-        else:
-            mapping = to_mapping(ob)
-            d = {}
-            for k in mapping:
-                d[k] = mapping[k]
-            try:
-                type_ = d.pop("type")
-                try:
-                    type_ = str(type_)
-                except UnicodeEncodeError:
-                    # If the type contains non-ascii characters, we can assume
-                    # it's not a valid GeoJSON type
-                    raise AttributeError(f"{type_} is not a GeoJSON type")
-                geojson_factory = getattr(geojson.factory, type_)
-                instance = geojson_factory(**d)
-            except (AttributeError, KeyError) as invalid:
-                if strict:
-                    raise ValueError(
-                        f"Cannot coerce {ob!r} into "
-                        f"a valid GeoJSON structure: {invalid}"
-                    )
-                instance = ob
-        return instance
+        pass
 
     @property
     def is_valid(self):
-        return not self.errors()
+        pass
 
     def check_list_errors(self, checkFunc, lst):
         """Validation helper function."""
-        # check for errors on each subitem, filter only subitems with errors
-        results = (checkFunc(i) for i in lst)
-        return [err for err in results if err]
+        pass
 
     def errors(self):
         """Return validation errors (if any).
         Implement in each subclass.
         """
-
-        # make sure that each subclass implements it's own validation function
-        if self.__class__ != GeoJSON:
-            raise NotImplementedError(self.__class__)
+        pass

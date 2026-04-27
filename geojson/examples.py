@@ -33,12 +33,7 @@ class SimpleWebFeature:
         self.properties = {'title': title, 'summary': summary, 'link': link}
 
     def as_dict(self):
-        return {
-            "type": "Feature",
-            "id": self.id,
-            "properties": self.properties,
-            "geometry": self.geometry
-            }
+        pass
 
     __geo_interface__ = property(as_dict)
 
@@ -54,16 +49,4 @@ def create_simple_web_feature(o):
     :return: A SimpleWebFeature from the dict provided.
     :rtype: SimpleWebFeature
     """
-    try:
-        id = o['id']
-        g = o['geometry']
-        p = o['properties']
-        return SimpleWebFeature(str(id), {
-            'type': str(g.get('type')),
-            'coordinates': g.get('coordinates', [])},
-            title=p.get('title'),
-            summary=p.get('summary'),
-            link=str(p.get('link')))
-    except (KeyError, TypeError):
-        pass
-    return o
+    pass

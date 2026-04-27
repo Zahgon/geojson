@@ -11,7 +11,7 @@ from geojson.mapping import to_mapping
 class GeoJSONEncoder(json.JSONEncoder):
 
     def default(self, obj):
-        return geojson.factory.GeoJSON.to_instance(obj) # NOQA
+        pass
 
 
 # Wrap the functions from json, providing encoder, decoders, and
@@ -19,17 +19,15 @@ class GeoJSONEncoder(json.JSONEncoder):
 # Here the defaults are set to only permit valid JSON as per RFC 4267
 
 def _enforce_strict_numbers(obj):
-    raise ValueError(f"Number {obj!r} is not JSON compliant")
+    pass
 
 
 def dump(obj, fp, cls=GeoJSONEncoder, allow_nan=False, **kwargs):
-    return json.dump(to_mapping(obj),
-                     fp, cls=cls, allow_nan=allow_nan, **kwargs)
+    pass
 
 
 def dumps(obj, cls=GeoJSONEncoder, allow_nan=False, ensure_ascii=False, **kwargs):
-    return json.dumps(to_mapping(obj),
-                      cls=cls, allow_nan=allow_nan, ensure_ascii=ensure_ascii, **kwargs)
+    pass
 
 
 def load(fp,
@@ -37,10 +35,7 @@ def load(fp,
          parse_constant=_enforce_strict_numbers,
          object_hook=geojson.base.GeoJSON.to_instance,
          **kwargs):
-    return json.load(fp,
-                     cls=cls, object_hook=object_hook,
-                     parse_constant=parse_constant,
-                     **kwargs)
+    pass
 
 
 def loads(s,
@@ -48,10 +43,7 @@ def loads(s,
           parse_constant=_enforce_strict_numbers,
           object_hook=geojson.base.GeoJSON.to_instance,
           **kwargs):
-    return json.loads(s,
-                      cls=cls, object_hook=object_hook,
-                      parse_constant=parse_constant,
-                      **kwargs)
+    pass
 
 
 # Backwards compatibility
